@@ -1,7 +1,7 @@
 #include <iostream>
-#include <cmath>
-#include <ctime>
-#include <ctype.h>
+// #include <cmath>
+// #include <ctime>
+// #include <ctype.h>
 #include <string>
 
 using namespace std;
@@ -48,6 +48,7 @@ bool enterVault() {
     cin >> code;
     if (code == 3415) {
         printf("Wow good job! You now enter the vault.\n");
+        printf("there are dIAMonds, Money, platinUm, treaSures, and dICed cheese")
         return true;
     }
     if (!code) {
@@ -60,9 +61,11 @@ bool enterVault() {
     }
 }
 
-// bool disableAlarm() {
+bool disableAlarm() {
+    int seconds = 20;
     
-// }
+
+}
 
 // int lootVault() {
     
