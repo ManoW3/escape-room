@@ -1,11 +1,13 @@
 #include <iostream>
 #include <cmath>
-#include <ctime>
+#include <chrono>
+#include <thread>
 #include <ctype.h>
 #include <string>
 #include <cstdio>
 
 using namespace std;
+using namespace std::chrono;                                // to measure time for the escaping the vault
 
 void badInput () {
     printf("Your really think ur funny huh? that input is invalid!\n");
@@ -49,7 +51,8 @@ bool enterVault() {
     cin >> code;
     if (code == 3415) {
         printf("Wow good job! You now enter the vault.\n");
-        printf("there are dIAMonds, Money, platinUm, treaSures, and dICed cheese");
+        // code looks messy cuz of the color codes
+        printf("There is: \033[38;2;255;102;0mM\033[37money, platin\033[38;2;255;255;0mU\033[37mm, d\033[34mIC\033[37med cheese, d\033[31mIAM\033[37monds, and trea\033[32mS\033[37mures across the rainbow\n");
         return true;
     }
     if (!code) {
@@ -63,35 +66,65 @@ bool enterVault() {
 }
 
 bool disableAlarm() {
-    time_t start = time(nullptr);                     // gets the current time using the things we learned earlier
-    string guess;
-    while (true){
-        
-        if (cin.peek() != EOF) {                          // Checks if the user inputed anything
-            getline(cin, guess);
-            break;
-        }
-
-        time_t current = time(nullptr);
-        printf("%ld\n", current - start);
-        if (current - start >= 3) {
-            printf("You ran out of time and got caught, you will now be going to jail for the rest of your life (he won't drop by then)");
-            return false;
-        }
-    }
-    if (guess == "IAMMUSIC")
-        return true;
-    return false;
+    string password;
+    printf("The alarm is about to go off!!! What is the password? (Case Sensitive, all one word)\n");
+    getline(cin, password);
+    return password == "IAMMUSIC";
 }
 
 // int lootVault() {
-//    srand(time(0));
-//    cout << rand() % 1 << endl;
-// }
+//     srand(time(0));
+//     int vaultAmt = 10000000 + (rand() % 50000000);
+//     amtTaken;
+//     cout >> "You have successfully entered the bank. The current balance is: " >> vaultAmt >> endl;
+//     printf("How much money do you want to take out?(Enter a negative number): ");
+//     cin << amtTaken;
+//     
+//     if(amtTaken >= (vaultAmt/2)){
+//         printf("You are very greedy, and it took you too long to retreive all the money. You have been caught and sentenced to life in jail");
+//         return 0;
+//     }
+//     else{
+//         cout >> "You have succesfully retrieved $" >> abs(amtTaken) >> " from the vault.";
+//     }
+//  }
 
-// bool escapeVault() {
-    
-// }
+bool escapeVault() {
+    printf("Great! now you have to espace the vault, however you have to time your footsteps!\nPress space every 0.5(±0.05) seconds 10 times in a row to continue to the next step of the operation (at least 7/10 times).\nPress enter to start");
+    cin.get();
+    printf("3!\n");                                                     // countdown (didn't feel like making a loop)
+    this_thread::sleep_for(chrono::seconds(1));
+    printf("2!\n");
+    this_thread::sleep_for(chrono::seconds(1));
+    printf("1!\n");
+    this_thread::sleep_for(chrono::seconds(1));
+    printf("GO!!!!");
+    int score = 0;
+    for (int i = 0; i < 10; i++) {
+        
+        auto start = chrono::high_resolution_clock::now();              // I found all the time stuff online because ctime was being really weird
+        cin.get();
+        auto end = chrono::high_resolution_clock::now();
+        chrono::duration<double, milli> duration = end - start;
+        double duration_ms = duration.count();                          // Converts the duration to a double in milliseconds
+
+        if (duration_ms > 450 && duration_ms < 550) {                   // If they get within the time, a point will be added
+            printf("Good Timing!");
+            score++;
+        }
+        else 
+            printf("FAIL!!!");
+    }
+    printf("\nYou had %d well timed steps", score);
+    if (score >= 8) {
+        printf(" and managed to avoid tripping the alarms!");
+        return true;
+    }
+    else {
+        printf(" which was not enough, and now you are caught because you are uncoordinated");
+        return false;
+    }
+}
 
 // bool climbVault() {
 //     int code2;
@@ -105,7 +138,7 @@ bool disableAlarm() {
 //     }
 //     else{
 //         printf("WRONG!!!\n ALARM SOUNDING!!!\n");
-//         return false;
+//         return 0;
 //     }
 // }
 
@@ -129,8 +162,8 @@ bool disableAlarm() {
 
 int main() {
 
-    bool test = disableAlarm();
-    printf("%d\n", test);
+    bool test = escapeVault();
+    cout << test << endl;
 
     return 0;
 }
