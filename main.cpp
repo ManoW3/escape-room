@@ -2,7 +2,7 @@
  * Mano Wertman & Ayaan Gill
  * Escape Room
  * 1/9/2025
- * Extra: Used colors, many more functions, and the chrono library for more accurate timing.
+ * Extra: Used colors, many more functions, and the chrono library for more accurate timing. (and printf in things written by mano)
  */
 #include <iostream>
 #include <cmath>
