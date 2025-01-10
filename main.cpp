@@ -93,7 +93,7 @@ bool lootVault() {
     printf("How much money do you want to take out?(Enter a negative number): ");
     cin >> amtTaken;
 
-    if (amtTaken >= (vaultAmt / 2)) {
+    if (abs(amtTaken) >= (vaultAmt / 2)) {
         // Player gets caught for taking too much money
         printf("You are very greedy, and it took you too long to retrieve all the money. You have been caught and sentenced to life in jail\n");
         return false;
