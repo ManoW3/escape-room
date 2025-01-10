@@ -106,7 +106,7 @@ bool lootVault() {
 
 bool escapeVault() {
     // Function to escape the vault by timing footsteps
-    printf("Great! Now you have to escape the vault, however you have to time your footsteps!\nPress space every 0.5(\u00b10.05) seconds 10 times in a row to continue to the next step of the operation (at least 7/10 times).\nPress enter to start\n");
+    printf("Great! Now you have to escape the vault, however you have to time your footsteps!\nPress enter every 0.5(\u00b10.05) seconds 10 times in a row to continue to the next step of the operation (at least 7/10 times).\nPress enter to start\n");
     cin.ignore();
     cin.ignore();
     printf("3!\n");
